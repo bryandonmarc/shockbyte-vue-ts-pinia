@@ -1,10 +1,12 @@
 <script setup lang="ts">
-import AppLayout from '@/layouts/AppLayout.vue'
 import { RouterView } from 'vue-router'
 </script>
 
 <template>
-  <AppLayout>
+  <RouterView name="AppHeader" />
+  <section class="relative flex min-h-[calc(100vh-4.375rem)] w-full max-w-[100vw]">
+    <RouterView name="AppSidebar" />
     <RouterView />
-  </AppLayout>
+    <RouterView name="AppPagination" />
+  </section>
 </template>

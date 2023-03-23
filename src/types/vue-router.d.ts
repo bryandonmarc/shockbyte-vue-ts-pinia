@@ -4,11 +4,10 @@
 export {}
 
 import 'vue-router'
-
-declare type Lazy<T> = () => Promise<T>
+import type { FunctionalComponent, SVGAttributes } from 'vue'
 
 declare module 'vue-router' {
   interface RouteMeta {
-    layout: RouteComponent | Lazy<RouteComponent>
+    icon: FunctionalComponent<SVGAttributes>
   }
 }

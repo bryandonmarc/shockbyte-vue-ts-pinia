@@ -1,0 +1,30 @@
+@layer components {
+  .button {
+    @apply relative inline-flex min-h-[3rem] min-w-[3rem] cursor-pointer items-center rounded-lg py-3 px-5 text-base transition-colors;
+
+    &:disabled {
+      @apply pointer-events-none cursor-not-allowed bg-gray-700 text-gray-500;
+    }
+
+    &.button-icon {
+      @apply p-3;
+    }
+
+    &.button-pagination {
+      @apply min-h-[2.25rem] min-w-[2.25rem] select-none justify-center rounded-md py-[3px];
+    }
+  }
+
+  .button-primary {
+    @apply bg-dark text-white/20 ring-primary ring-offset-2  ring-offset-darker;
+
+    &:hover,
+    &.button-active {
+      @apply bg-primary text-white;
+    }
+
+    &:focus {
+      @apply outline-none ring-2;
+    }
+  }
+}

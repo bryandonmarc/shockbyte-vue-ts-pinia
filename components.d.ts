@@ -9,8 +9,16 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    AppButton: typeof import('./src/components/UI/AppButton.vue')['default']
-    AppHeader: typeof import('./src/components/UI/AppHeader.vue')['default']
+    AppHeader: typeof import('./src/components/Layout/AppHeader.vue')['default']
+    AppPagination: typeof import('./src/components/Layout/AppPagination.vue')['default']
+    AppSidebar: typeof import('./src/components/Layout/AppSidebar.vue')['default']
+    Dashboard: typeof import('./src/components/Slot/Dashboard.vue')['default']
+    DashboardCard: typeof import('./src/components/Dashboard/DashboardCard.vue')['default']
+    DashboardCardSkeleton: typeof import('./src/components/Dashboard/DashboardCardSkeleton.vue')['default']
+    DashboardSlot: typeof import('./src/components/Dashboard/DashboardSlot.vue')['default']
+    OverviewGraph: typeof import('./src/components/Overview/OverviewGraph.vue')['default']
+    OverviewHeader: typeof import('./src/components/Overview/OverviewHeader.vue')['default']
+    OverviewList: typeof import('./src/components/Overview/OverviewList.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }
