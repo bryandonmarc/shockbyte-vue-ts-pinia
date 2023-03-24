@@ -41,7 +41,8 @@ export default defineConfig({
           {
             src: '/android-chrome-192x192.png',
             sizes: '192x192',
-            type: 'image/png'
+            type: 'image/png',
+            purpose: 'any maskable'
           },
           {
             src: '/android-chrome-512x512.png',
@@ -51,7 +52,8 @@ export default defineConfig({
         ],
         theme_color: '#ffffff',
         background_color: '#ffffff',
-        display: 'standalone'
+        display: 'standalone',
+        start_url: '/'
       }
     })
   ],
