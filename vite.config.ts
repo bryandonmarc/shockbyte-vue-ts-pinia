@@ -31,7 +31,7 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       workbox: {
-        globPatterns: ['**/*.{js,css,html,ico,png,svg,eot,otf,woff,woff2}']
+        globPatterns: ['**/*.{js,css,html,ico,png,svg,eot,otf,woff,woff2,webmanifest}']
       },
       includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'safari-pinned-tab.svg'],
       manifest: {
