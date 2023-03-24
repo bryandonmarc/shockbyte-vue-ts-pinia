@@ -7,6 +7,7 @@
         id: props.birdhouse.ubidValue
       }
     }"
+    class="rounded-xl ring-dark ring-offset-2 ring-offset-darker focus:outline-none focus:ring-2"
   >
     <article class="min-h-[9.75rem] rounded-xl bg-dark p-6 font-display">
       <div class="flex flex-col gap-4">
