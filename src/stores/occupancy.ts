@@ -16,7 +16,8 @@ export const useOccupancyStore = defineStore('occupancy', {
   state: (): OccupancyStore => initialState(),
   getters: {
     getItems: (state) => state.data,
-    getPage: (state) => state.meta.currentPage
+    getPage: (state) => state.meta.currentPage,
+    getMeta: (state) => state.meta
   },
   actions: {
     recordOccupancy(data: OccupancyItem) {

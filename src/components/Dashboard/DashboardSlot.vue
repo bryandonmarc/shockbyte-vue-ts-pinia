@@ -1,17 +1,19 @@
 <template>
-  <DashboardCard
-    v-for="item in getItems.filter((item) => Boolean(item.birdhouse)).slice(start, end)"
-    :key="item.value"
-    :birdhouse="item.birdhouse"
-  />
+  <div class="flex h-fit flex-row flex-wrap gap-6">
+    <DashboardCard
+      v-for="item in getItems.filter((item) => Boolean(item.birdhouse)).slice(start, end)"
+      :key="item.value"
+      :birdhouse="item.birdhouse"
+    />
+  </div>
 </template>
 
 <script setup lang="ts">
 import { useFetch, type UseFetchReturn } from '@vueuse/core'
-import { reactive, computed, ref } from 'vue'
+import { reactive, computed } from 'vue'
 import { storeToRefs } from 'pinia'
 
-import { useRegistrationStore } from '@/stores/registration.js'
+import { useRegistrationStore } from '@/stores/registration'
 import { usePaginationStore } from '@/stores/pagination'
 import type { RegistrationResponse } from '@/types/data'
 
@@ -20,10 +22,15 @@ const paginationStore = usePaginationStore()
 
 const { getItems, getMeta } = storeToRefs(registrationStore)
 const { getSlice } = storeToRefs(paginationStore)
-const start = ref(getSlice.value[0])
-const end = ref(getSlice.value[1])
 
-if (!getItems.value.slice(start.value, end.value).length) {
+const start = computed(() => getSlice.value[0])
+const end = computed(() => getSlice.value[1])
+
+if (getItems.value.slice(start.value, end.value).length) {
+  paginationStore.setPage(getMeta.value.currentPage)
+  paginationStore.setPageSize(getMeta.value.itemsPerPage)
+  paginationStore.setNumItems(getMeta.value.totalItems)
+} else {
   const params = reactive({
     page: getMeta.value.currentPage.toString(),
     limit: getMeta.value.itemsPerPage.toString()

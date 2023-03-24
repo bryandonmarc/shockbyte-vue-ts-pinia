@@ -4,13 +4,11 @@
       path: `/admin/${props.birdhouse.ubidValue}`,
       name: 'overview',
       params: {
-        id: props.birdhouse.ubidValue,
-        longitude: props.birdhouse.longitude,
-        latitude: props.birdhouse.latitude
+        id: props.birdhouse.ubidValue
       }
     }"
   >
-    <article class="h-[9.75rem] rounded-xl bg-dark p-6 font-display">
+    <article class="min-h-[9.75rem] rounded-xl bg-dark p-6 font-display">
       <div class="flex flex-col gap-4">
         <h1 class="text-2xl font-semibold">{{ props.birdhouse.name }}</h1>
         <footer class="flex flex-col gap-y-2">
@@ -21,11 +19,17 @@
           <div class="flex flex-row gap-x-[0.625rem]">
             <span class="inline-flex items-center">
               <IconPets class="mr-2 h-5 w-5" />
-              {{ (birdhouse.items || []).reduce((pets, curr) => pets + curr?.birds, 0) }}
+              {{
+                (birdhouse.items || []).reduce((a, b) => (a.created_at > b.created_at ? a : b))
+                  .birds ?? 0
+              }}
             </span>
             <span class="inline-flex items-center">
               <IconEgg class="mr-2 h-5 w-5" />
-              {{ (birdhouse.items || []).reduce((eggs, curr) => eggs + curr?.eggs, 0) }}
+              {{
+                (birdhouse.items || []).reduce((a, b) => (a.created_at > b.created_at ? a : b))
+                  .eggs ?? 0
+              }}
             </span>
           </div>
         </footer>

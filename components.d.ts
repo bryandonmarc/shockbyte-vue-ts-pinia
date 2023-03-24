@@ -16,9 +16,11 @@ declare module '@vue/runtime-core' {
     DashboardCard: typeof import('./src/components/Dashboard/DashboardCard.vue')['default']
     DashboardCardSkeleton: typeof import('./src/components/Dashboard/DashboardCardSkeleton.vue')['default']
     DashboardSlot: typeof import('./src/components/Dashboard/DashboardSlot.vue')['default']
+    LineChart: typeof import('./src/components/Overview/LineChart.vue')['default']
     OverviewGraph: typeof import('./src/components/Overview/OverviewGraph.vue')['default']
     OverviewHeader: typeof import('./src/components/Overview/OverviewHeader.vue')['default']
     OverviewList: typeof import('./src/components/Overview/OverviewList.vue')['default']
+    OverviewListItem: typeof import('./src/components/Overview/OverviewListItem.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }

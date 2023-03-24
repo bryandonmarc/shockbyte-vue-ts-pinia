@@ -1,12 +1,16 @@
 <template>
-  <div class="flex h-fit flex-row flex-wrap gap-6 p-8">
-    <Suspense>
-      <DashboardSlot />
+  <div class="p-8">
+    <KeepAlive>
+      <Suspense>
+        <DashboardSlot />
 
-      <template #fallback>
-        <DashboardCardSkeleton v-for="i in getPageSize" :key="i" />
-      </template>
-    </Suspense>
+        <template #fallback>
+          <div class="flex h-fit flex-row flex-wrap gap-6">
+            <DashboardCardSkeleton v-for="i in getPageSize" :key="i" />
+          </div>
+        </template>
+      </Suspense>
+    </KeepAlive>
   </div>
 </template>
 
