@@ -1,0 +1,15 @@
+# https://dev.to/ysmnikhil/how-to-build-with-react-or-vue-with-vite-and-docker-1a3l
+
+version: '3.8'
+services:
+  web:
+    build: .
+    container_name: frontend
+    ports:
+      - 5173:5173
+    working_dir: /app
+    volumes:
+      - type: bind
+        source: ./
+        target: /srv/app
+    tty: true
