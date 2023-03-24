@@ -6,6 +6,7 @@ import vue from '@vitejs/plugin-vue'
 import Icons from 'unplugin-icons/vite'
 import Components from 'unplugin-vue-components/vite'
 
+import { VitePWA } from 'vite-plugin-pwa'
 import svgLoader from 'vite-svg-loader'
 
 // https://vitejs.dev/config/
@@ -25,6 +26,32 @@ export default defineConfig({
     svgLoader({
       svgoConfig: {
         multipass: true
+      }
+    }),
+    VitePWA({
+      registerType: 'autoUpdate',
+      workbox: {
+        globPatterns: ['**/*.{js,css,html,ico,png,svg}']
+      },
+      includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'safari-pinned-tab.svg'],
+      manifest: {
+        name: 'Shockbyte',
+        short_name: 'Shockbyte',
+        icons: [
+          {
+            src: '/android-chrome-192x192.png',
+            sizes: '192x192',
+            type: 'image/png'
+          },
+          {
+            src: '/android-chrome-512x512.png',
+            sizes: '512x512',
+            type: 'image/png'
+          }
+        ],
+        theme_color: '#ffffff',
+        background_color: '#ffffff',
+        display: 'standalone'
       }
     })
   ],
