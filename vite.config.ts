@@ -31,7 +31,26 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       workbox: {
-        globPatterns: ['**/*.{js,css,html,ico,png,svg,eot,otf,woff,woff2,webmanifest}']
+        globPatterns: ['**/*.{js,css,html,ico,png,svg,eot,otf,woff,woff2,webmanifest}'],
+        runtimeCaching: [
+          {
+            urlPattern: ({ url }) => url.origin === 'https://shockbyte-vue-ts-pinia.vercel.app',
+            handler: 'StaleWhileRevalidate',
+            options: {
+              cacheName: 'static-cache',
+              expiration: {
+                maxAgeSeconds: 60 * 60 * 24 * 365
+              }
+            }
+          },
+          {
+            urlPattern: ({ url }) => url.origin === 'https://*.shockbyte.dev',
+            handler: 'NetworkFirst',
+            options: {
+              cacheName: 'server-cache'
+            }
+          }
+        ]
       },
       includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'safari-pinned-tab.svg'],
       manifest: {
