@@ -38,22 +38,27 @@ ChartJS.register(
 )
 
 const props = defineProps<OverviewProps>()
+const data = props.items.reduce(
+  (acc, curr) => {
+    const date = new Date(curr.created_at)
+    // https://stackoverflow.com/a/24481597
+    const index = (date.getDay() + 6) % 7
+    acc.birds[index] += curr.birds
+    acc.eggs[index] += curr.eggs
+    return acc
+  },
+  {
+    birds: Array(7).fill(0),
+    eggs: Array(7).fill(0)
+  }
+)
 
 const chartData: ChartData<'line'> = {
   labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
   datasets: [
     {
       label: 'Birds',
-      data: props.items.reduce(
-        (acc, curr) => {
-          const date = new Date(curr.created_at)
-          // https://stackoverflow.com/a/24481597
-          const index = (date.getDay() + 6) % 7
-          acc[index] += curr.birds
-          return acc
-        },
-        [0, 0, 0, 0, 0, 0, 0]
-      ),
+      data: data.birds,
       fill: true,
       borderColor: '#0E9CFF',
       backgroundColor: 'rgba(14, 156, 255, 0.2)',
@@ -61,15 +66,7 @@ const chartData: ChartData<'line'> = {
     },
     {
       label: 'Eggs',
-      data: props.items.reduce(
-        (acc, curr) => {
-          const date = new Date(curr.created_at)
-          const index = (date.getDay() + 6) % 7
-          acc[index] += curr.eggs
-          return acc
-        },
-        [0, 0, 0, 0, 0, 0, 0]
-      ),
+      data: data.eggs,
       fill: true,
       borderColor: '#744F99',
       backgroundColor: 'rgba(116, 79, 153, 0.2)',
@@ -95,11 +92,7 @@ const chartOptions: ChartOptions<'line'> = {
         dash: [4, 4]
       },
       ticks: {
-        color: 'rgba(255, 255, 255, 0.6)',
-        font: {
-          size: 12,
-          lineHeight: '15px'
-        }
+        color: 'rgba(255, 255, 255, 0.6)'
       }
     },
     y: {
@@ -110,12 +103,16 @@ const chartOptions: ChartOptions<'line'> = {
         dash: [4, 4]
       },
       ticks: {
-        color: 'rgba(255, 255, 255, 0.6)',
-        font: {
-          size: 12,
-          lineHeight: '15px'
-        }
+        color: 'rgba(255, 255, 255, 0.6)'
+      },
+      afterFit(scaleInstance) {
+        scaleInstance.width = Math.max(...[...data.birds, ...data.eggs]).toString().length * 16
       }
+    }
+  },
+  layout: {
+    padding: {
+      right: 24
     }
   }
 }
