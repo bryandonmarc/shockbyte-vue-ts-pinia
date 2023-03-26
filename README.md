@@ -52,9 +52,9 @@ pnpm dev
 To start up the docker environment:
 
 ```bash
-pnpm dev:docker
+docker-compose up
 # or
-docker run --rm -it -p 5173:5173 bryandonmarc/shockbyte-vue-ts-pinia:1.3
+pnpm dev:docker
 ```
 
 ## Testing
